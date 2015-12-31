@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery optional input demo</title>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../jquery.optional-input.js"></script>
+</head>
+<body>
+    <form>
+        <div>
+            <label>Optional input:</label>
+            <input type="text">
+        </div>
+    </form>
+
+    <script>
+        $(function() {
+
+            var $input = $('input');
+
+            // init
+            $input.optionalInput({
+                value: 'foobar'
+            });
+
+            console.log('1. Value is', $input.optionalInput('value'));
+
+            $input.optionalInput('value', null); // checkbox will be unchecked
+            console.log('2. Value is', $input.optionalInput('value'));
+
+            $input.optionalInput('value', 'foobar'); // set value back, checbox will be checked
+            console.log('3. Value is', $input.optionalInput('value'));
+
+            $input.on('optional-input.change', function(event, value) {
+                console.log('New value on change', value);
+            });
+
+            $input.on('keyup', function(event) {
+                console.log('New value instantly', $input.val());
+            });
+
+        });
+    </script>
+</body>
+</html>
