@@ -114,12 +114,15 @@
                 _el.attr('disabled', null);
                 _el.attr('placeholder', null);
                 _el.val(_savedValue);
-                _el.focus();
             }
         }
 
         function _onCheckChange() {
-            _setInputState(_checkbox.is(':checked'));
+            var isChecked = _checkbox.is(':checked');
+            _setInputState(isChecked);
+            if (isChecked) {
+                _el.focus();
+            }
             updateValue();
         }
 
